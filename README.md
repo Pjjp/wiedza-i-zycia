@@ -1,6 +1,10 @@
 
 # Wiedza i Życie - Scraper
+# Angular Visualization
+# ML Text Analisys
 ___________________________
+
+checkout rc branch
 
 ### Prerequisites
 
