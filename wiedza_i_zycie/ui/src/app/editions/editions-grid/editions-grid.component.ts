@@ -1,36 +1,36 @@
-import { Component, OnInit } from '@angular/core';
-import { WizDataService } from '../wiz-data.service';
+import { Component, Output, EventEmitter, OnInit, ViewChild } from '@angular/core';
+import { EditionsStore } from '@store';
+import { MatProgressBar } from '@angular/material/progress-bar'
+import { PageEvent, MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-editions-grid',
   templateUrl: './editions-grid.component.html',
   styleUrls: ['./editions-grid.component.scss']
 })
-export class EditionsGridComponent implements OnInit {
+export class EditionsGridComponent {
 
-  editionsData;
+  start = 0;
+  end = 10;
+  length = 100;
+  pageSize = 10;
 
-  constructor(
-    private wizDataService: WizDataService
-  ) { }
+  @Output() editionSelected: EventEmitter<boolean> = new EventEmitter<boolean>();
+
+  constructor(public store: EditionsStore) {}
+
 
   ngOnInit() {
-    this.wizDataService.getWizJson().subscribe(data => {
-      console.log(data[0]);
-      this.editionsData = data;
-    });
+    // this.store.subsetEditions(this.start, this.end);
   }
 
-  // getData(){
-  //   this.wizDataService.getWizJson().subscribe(data => {
-  //     // console.log(data);
-  //     this.editionsData = data;
-  //     // return data; 
-  //   });
-  // }
+  onPageChange(event){
 
-  getPath(){
+    this.start = event.pageIndex * event.pageSize;
+    this.end = this.start + event.pageSize;
+    this.pageSize = event.pageSize;
 
+    this.store.subsetEditions(this.start, this.end)
   }
 
 }

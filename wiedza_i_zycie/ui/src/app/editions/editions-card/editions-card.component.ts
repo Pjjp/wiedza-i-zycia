@@ -1,10 +1,6 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, Output, Input, EventEmitter } from '@angular/core';
 
-// import { WizDataService } from '../wiz-data.service';
-import { debug } from 'util';
-import { Input } from '@angular/core';
-import { NavCommunicationService } from 'src/app/shared/nav-communication.service';
-
+import { ArticlesStore } from '@store';
 
 @Component({
   selector: 'app-editions-card',
@@ -13,23 +9,15 @@ import { NavCommunicationService } from 'src/app/shared/nav-communication.servic
 })
 
 export class EditionsCardComponent  {
-  // implements OnInit
 
-  @Input() src
-  @Input() date 
+  @Input() edition;
 
-  constructor(
-    // private wizDataService: WizDataService
-    private navCommunicationService: NavCommunicationService
-  ) { }
+  @Output() editionSelected: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  ngOnInit() {
-    // console.log(this.src);
-    // console.log(this.editionProps);
+  constructor(public store: ArticlesStore) {}
+
+  onEditionSelected() {
+    this.editionSelected.emit(true);
+    this.store.bulkReadArticles(this.edition.articles);
   }
-
-  showDetalis(){
-    this.navCommunicationService.toggle();
-  }
-
 }

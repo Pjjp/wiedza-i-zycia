@@ -6,5 +6,45 @@ mat-toolbar {
 }
 
 .editions-grid-container {
-  margin-top: 60px;
+  margin: 0;
+  // background-color: dimgrey;
+}
+
+mat-sidenav {
+  max-width: 400px;
+  width: 90vw;
+}
+
+mat-sidenav a {
+  text-decoration: none;
+  // font-size: 25px;
+  color: #818181;
+  display: block;
+  margin: 5px;
+}
+
+p {
+  text-decoration: none;
+  // font-size: 30px;
+  color: #818181;
+  // position: absolute;
+  right: 10px;
+}
+
+.links{
+  // background-color: black;
+  margin: 10px;
+  margin-top: 30px;
+}
+
+.articles {
+  padding: 10px;
+
+  img{
+    // height: 200px;
+    width: 90%;
+    // max-width: 30vw;
+  }
+  
+
 }
